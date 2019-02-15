@@ -7,12 +7,21 @@ from pprint import pprint
 from canvas_tools import get, post, from_canvas_date, to_canvas_date
 from datetime import datetime, timedelta
 from dateutil import tz, parser
+import os
+import sys
+import requests
+
+import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # Moodle site does not have HTTPS
 urllib3.disable_warnings()
 
 # Load in settings
-with open('settings.json') as settings_file:
+dir_path = os.path.dirname(os.path.realpath(__file__))
+with open(dir_path+'/settings.json') as settings_file:
     settings = json.load(settings_file)
 
 head = { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36" }
